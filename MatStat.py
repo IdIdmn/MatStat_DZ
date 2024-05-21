@@ -6,9 +6,9 @@ import scipy
 
 # ----------------------------------- Сюда вписывать свои значения -----------------------------------------
 
-FILENAME = "ТВиМС.xlsx"
+FILENAME = "MatStat_DZ\\Test.xlsx"
 IS_LEFT_BORDER_INCLUDED = False # Включена ли левая граница в интервалах: (] - False, [) - True
-intervalBorders = [125, 135, 137, 143, 149, 155, 161, 166, 173] # Границы интервалов 
+intervalBorders = [150, 156, 160, 163, 166, 169, 172, 176] # Границы интервалов 
 
 # -----------------------------------------------------------------------------------------------------------
 
@@ -82,10 +82,11 @@ def printTheoreticalProbabilities(isLeftBorderIncluded, *borders):
     sheet[columnNames[0] + "45"].value = "Iᵢ"
     sheet[columnNames[0] + "46"].value = "pᵢ"   
     for i in range(1,len(borders)):
-        sheet[columnNames[i] + "45"].value = "(" + str(borders[i - 1]) + ", " + str(borders[i]) + "]"
+        if isLeftBorderIncluded: sheet[columnNames[i] + "45"].value = "(" + str(borders[i - 1]) + ", " + str(borders[i]) + "]"
+        else: sheet[columnNames[i] + "45"].value = "х" + str(borders[i - 1]) + ", " + str(borders[i]) + ")"
         sheet[columnNames[i] + "46"].value = sheet[columnNames[i + 1] + "42"].value - sheet[columnNames[i] + "42"].value
     if isLeftBorderIncluded: sheet[columnNames[len(borders) - 1] + "45"].value = "[" + str(borders[-2]) + ", " + str(borders[-1]) + "]"
-    else: sheet[columnNames[len(borders) - 1] + "45"].value = "[" + str(borders[-2]) + ", " + str(borders[-1]) + "]"
+    else: sheet[columnNames[1] + "45"].value = "[" + str(borders[0]) + ", " + str(borders[1]) + "]"
     return
 
 file = openpyxl.load_workbook(FILENAME)
