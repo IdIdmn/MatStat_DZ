@@ -82,8 +82,8 @@ def printTheoreticalProbabilities(isLeftBorderIncluded, *borders):
     sheet[columnNames[0] + "45"].value = "Iᵢ"
     sheet[columnNames[0] + "46"].value = "pᵢ"   
     for i in range(1,len(borders)):
-        if isLeftBorderIncluded: sheet[columnNames[i] + "45"].value = "(" + str(borders[i - 1]) + ", " + str(borders[i]) + "]"
-        else: sheet[columnNames[i] + "45"].value = "х" + str(borders[i - 1]) + ", " + str(borders[i]) + ")"
+        if isLeftBorderIncluded: sheet[columnNames[i] + "45"].value = "[" + str(borders[i - 1]) + ", " + str(borders[i]) + ")"
+        else: sheet[columnNames[i] + "45"].value = "(" + str(borders[i - 1]) + ", " + str(borders[i]) + "]"
         sheet[columnNames[i] + "46"].value = sheet[columnNames[i + 1] + "42"].value - sheet[columnNames[i] + "42"].value
     if isLeftBorderIncluded: sheet[columnNames[len(borders) - 1] + "45"].value = "[" + str(borders[-2]) + ", " + str(borders[-1]) + "]"
     else: sheet[columnNames[1] + "45"].value = "[" + str(borders[0]) + ", " + str(borders[1]) + "]"
