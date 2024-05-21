@@ -91,7 +91,7 @@ def printTheoreticalProbabilities(isLeftBorderIncluded, *borders):
 file = openpyxl.load_workbook(FILENAME)
 sheet = file.active
 
-columnNames = list(string.ascii_uppercase) + sorted(list(map(lambda x: ''.join(x), list(itertools.combinations_with_replacement(string.ascii_uppercase, 2)))))
+columnNames = list(string.ascii_uppercase) + sorted(list(map(lambda x: ''.join(x), list(itertools.product(string.ascii_uppercase, repeat=2)))))
 
 height = max([row for row in range(1, 20) if (type(sheet[columnNames[0] + str(row)].value) == int or type(sheet[columnNames[0] + str(row)].value) == float)])
 width = max([column + 1 for column in range(20) if (type(sheet[columnNames[column] + str(1)].value) == int or type(sheet[columnNames[column] + str(1)].value) == float)])
